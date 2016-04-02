@@ -1,7 +1,7 @@
 import rpy2
 from flask import Flask
 from flask import request
-import json 
+import json
 from numpy import *
 from rpy2.robjects.numpy2ri import numpy2ri
 import scipy as sp
@@ -45,4 +45,4 @@ def api_formTestScores():
 
 if __name__ == '__main__':
     app.debug=True
-    app.run()
+    app.run(host='0.0.0.0')
