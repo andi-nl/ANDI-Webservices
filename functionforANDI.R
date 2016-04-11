@@ -6,6 +6,8 @@ library(lubridate)
 json <- fromJSON("Jtests.json")
 ##########################################################################
 
+
+
 myFunc <- function( myJSON){
 
 no.patients <- length(head(json,-3))
