@@ -1,8 +1,8 @@
 library(jsonlite)
 library(lubridate)
-load("C:/Users/jagelin1/Documents/Nan/Non-normality3/PrepforMplus/summarystats.RData")
+load("./summarystats.RData")
 
-ANDImetadata <- read.csv("C:/Users/jagelin1/Documents/Nan/Non-normality3/PrepforMplus/metadataforMMNCandpatient.csv")
+ANDImetadata <- read.csv("./metadataforMMNCandpatient.csv")
 myFunc <- function( myJSON){
   json <- fromJSON(myJSON)
 no.patients <- length(head(json,-3))
