@@ -1,12 +1,8 @@
 library(jsonlite)
 library(lubridate)
+load("C:/Users/jagelin1/Documents/Nan/Non-normality3/PrepforMplus/summarystats.RData")
 
-#input
-
-
-##########################################################################
-myJSON <- "Jtests.json"
-
+ANDImetadata <- read.csv("C:/Users/jagelin1/Documents/Nan/Non-normality3/PrepforMplus/metadataforMMNCandpatient.csv")
 myFunc <- function( myJSON){
   json <- fromJSON(myJSON)
 no.patients <- length(head(json,-3))
@@ -35,9 +31,6 @@ mypatdata$sig <- json$sig
 mypatdata$nomative <- json$nomative
       
 # defaultvalues
-load("C:/Users/jagelin1/Documents/Nan/Non-normality3/PrepforMplus/summarystats.RData")
-      
-ANDImetadata <- read.csv("C:/Users/jagelin1/Documents/Nan/Non-normality3/PrepforMplus/metadataforMMNCandpatient.csv")
 uniqueID <- ANDImetadata$uniqueid
       
 covariancemat <- betweencov + withincov
@@ -165,6 +158,3 @@ totaloutputdataframe <- rbind( totaloutputdataframe, myoutputdataframe)
       myoutputdata <- toJSON( totaloutputdataframe,pretty = T)
     return(myoutputdata)
 }
-    
-
-myFunc(myJSON)
