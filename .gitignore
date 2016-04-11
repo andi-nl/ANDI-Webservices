@@ -1,2 +1,4 @@
 metadataforMMNCandpatient.csv
 *.RData
+.Rproj.user
+.Rhistory
