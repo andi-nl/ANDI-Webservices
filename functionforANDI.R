@@ -12,7 +12,15 @@ mypatdata <- NULL
 for( i in 1:(no.patients) ){
   demos <- unlist(head(json[[i]],4))
   testinfo <- json[[i]][5][[1]]
-  mypatdata <- rbind( mypatdata, cbind( matrix(rep(demos, nrow(testinfo)), nrow(testinfo), byrow = T), testinfo))
+  if( length( testinfo ) == 1){
+    no.tests <- length( testinfo )
+  }
+  if( length( testinfo ) > 1){
+    no.tests <- nrow(testinfo)
+  }
+  
+  
+  mypatdata <- rbind( mypatdata, cbind( matrix(rep(demos, no.tests), no.tests, byrow = T), testinfo))
 }
 
 colnames( mypatdata) <- c("patid", "date", "SEX", "EDU", "uniqueid", "label", 
