@@ -3,13 +3,12 @@ library(lubridate)
 
 #input
 
-json <- fromJSON("Jtests.json")
+
 ##########################################################################
 
 
-
 myFunc <- function( myJSON){
-
+  json <- fromJSON(myJSON)
 no.patients <- length(head(json,-3))
 mypatdata <- NULL
 for( i in 1:(no.patients) ){
