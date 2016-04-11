@@ -46,8 +46,8 @@ totaloutputdataframe <- NULL
 whichtests <- unique(mypatdata$uniqueid)
 for( pat in unique(mypatdata$patid)){
 mydata <- mypatdata[mypatdata$patid == pat,]
-mydata$score <- ((mydata$score ^ ANDImetadata$mybestpowertransform[ANDImetadata$uniqueid %in% mydata$uniqueid] 
-     * sign(ANDImetadata$mybestpowertransform[ANDImetadata$uniqueid %in% mydata$uniqueid]) - 
+mydata$score <- ((mydata$score ^ ANDImetadata$mybestpowertransform[ANDImetadata$uniqueid %in% mydata$uniqueid] *
+                    sign(ANDImetadata$mybestpowertransform[ANDImetadata$uniqueid %in% mydata$uniqueid]) - 
        ANDImetadata$mymean.transformedscores[ANDImetadata$uniqueid %in% mydata$uniqueid]) /
 ANDImetadata$mysd.transformedscores[ANDImetadata$uniqueid %in% mydata$uniqueid]) *
 ANDImetadata$recode[ANDImetadata$uniqueid %in% mydata$uniqueid]
