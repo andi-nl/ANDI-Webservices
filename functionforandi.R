@@ -5,7 +5,7 @@ library(lubridate)
 
 
 ##########################################################################
-
+myJSON <- "Jtests.json"
 
 myFunc <- function( myJSON){
   json <- fromJSON(myJSON)
@@ -165,4 +165,6 @@ totaloutputdataframe <- rbind( totaloutputdataframe, myoutputdataframe)
       myoutputdata <- toJSON( totaloutputdataframe,pretty = T)
     return(myoutputdata)
 }
-      
+    
+
+myFunc(myJSON)
