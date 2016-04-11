@@ -6,6 +6,7 @@ library(lubridate)
 json <- fromJSON("Jtests.json")
 ##########################################################################
 
+myFunc <- function( myJSON){
 
 no.patients <- length(head(json,-3))
 mypatdata <- NULL
@@ -161,5 +162,6 @@ myoutputdataframe <- data.frame(
 totaloutputdataframe <- rbind( totaloutputdataframe, myoutputdataframe)
       }
       myoutputdata <- toJSON( totaloutputdataframe,pretty = T)
-      
+    return(myoutputdata)
+}
       
