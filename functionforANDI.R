@@ -3,15 +3,15 @@ library(lubridate)
 
 #input
 
-json <- fromJSON("C:/Users/jagelin1/Documents/Nan/Non-normality3/PrepforMplus/newjson8april2016.json")
+json <- fromJSON("Jtests.json")
 ##########################################################################
 
 
 no.patients <- length(head(json,-3))
 mypatdata <- NULL
 for( i in 1:(no.patients) ){
-  demos <- unlist(head(json[[i]],4))
-  testinfo <- json[[i]][5][[1]]
+  demos <- unlist(head(json[[i]],6))
+  testinfo <- json[[i]][7][[1]]
   if( length( testinfo ) == 1){
     no.tests <- length( testinfo )
   }
@@ -19,17 +19,14 @@ for( i in 1:(no.patients) ){
     no.tests <- nrow(testinfo)
   }
   
-  
   mypatdata <- rbind( mypatdata, cbind( matrix(rep(demos, no.tests), no.tests, byrow = T), testinfo))
 }
 
-colnames( mypatdata) <- c("patid", "date", "SEX", "EDU", "uniqueid", "label", 
+colnames( mypatdata) <- c("patid", "age", "dob", "dot", "SEX", "EDU", "uniqueid", "label", 
      "Dataset", "SPSS_name", "highborder", "highweb", "lowborder", "lowweb",
      "score")
 mypatdata$patid <- as.numeric(as.character(mypatdata$patid))
-mypatdata$AGE <- mypatdata$AGE
-  
-as.period(interval(ymd(substring(mypatdata$dob,1,10)),ymd(substring(mypatdata$dot,1,10)))$year - 65
+mypatdata$AGE <- as.period(interval(ymd(substring(mypatdata$dob,1,10)),ymd(substring(mypatdata$dot,1,10))))$year - 65
 mypatdata$EDU <- as.numeric(as.character(mypatdata$EDU))
 mypatdata$conf <- as.numeric(json$conf)
 mypatdata$sig <- json$sig
@@ -38,7 +35,7 @@ mypatdata$nomative <- json$nomative
 # defaultvalues
 load("C:/Users/jagelin1/Documents/Nan/Non-normality3/PrepforMplus/summarystats.RData")
       
-ANDImetadata <- read.csv("C:/Users/jagelin1metadataforMMNCandpatient.csv")
+ANDImetadata <- read.csv("C:/Users/jagelin1/Documents/Nan/Non-normality3/PrepforMplus/metadataforMMNCandpatient.csv")
 uniqueID <- ANDImetadata$uniqueid
       
 covariancemat <- betweencov + withincov
