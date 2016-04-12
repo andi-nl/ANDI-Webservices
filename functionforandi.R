@@ -23,12 +23,12 @@ for( i in 1:(no.patients) ){
 colnames( mypatdata) <- c("patid", "age", "dob", "dot", "SEX", "EDU", "uniqueid", "label", 
      "Dataset", "SPSS_name", "highborder", "highweb", "lowborder", "lowweb",
      "score")
-mypatdata[['patid']] <- as.numeric(as.character(mypatdata[['patid']]))
-mypatdata[['AGE']] <- year(as.period(interval(ymd(substring(mypatdata[['dob']],1,10)),ymd(substring(mypatdata[['dot']],1,10))))) - 65
-mypatdata[['EDU']] <- as.numeric(as.character(mypatdata[['EDU']]))
-mypatdata[['conf']] <- as.numeric(json[['conf']])
-mypatdata[['sig']] <- json[['sig']]
-mypatdata[['nomative']] <- json[['nomative']]
+mypatdata['patid'] <- mypatdata['patid']
+mypatdata['AGE'] <- year(as.period(interval(ymd(substring(mypatdata[['dob']],1,10)),ymd(substring(mypatdata[['dot']],1,10))))) - 65
+mypatdata[,'EDU'] <- as.numeric(as.character(mypatdata[,'EDU']))
+mypatdata[,'conf'] <- as.numeric(json[['conf']])
+mypatdata[,'sig'] <- json[['sig']]
+mypatdata[,'nomative'] <- json[['nomative']]
       
 # defaultvalues
 uniqueID <- ANDImetadata[['uniqueid']]
@@ -46,7 +46,6 @@ mydata[['score']] <- ((mydata[['score']] ^ ANDImetadata[['mybestpowertransform']
        ANDImetadata[['mymean.transformedscores']][ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]]) /
 ANDImetadata[['mysd.transformedscores']][ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]]) *
 ANDImetadata[['recode']][ANDImetadata[['uniqueid']] %in% mydata[['uniqueid']]]
-
 
 
 C <- covariancemat[ rownames(covariancemat) %in% whichtests, colnames(covariancemat) %in% whichtests]
