@@ -127,7 +127,8 @@ myFunc <- function( myJSON){
     tstatistics <- round(tstatistics, 2)
     
     
-    pvalues <- round( pvalues, 3)
+    pvalues <- format(round(pvalues, 3), nsmall = 3)
+    MNCpvalue <- format(round(MNCpvalue, 3), nsmall = 3)
     
     
     longtestnames <- paste(ANDImetadata[['Long.name.1']], ANDImetadata[['Long.name.2']], ANDImetadata[['Long.name.3']][!is.na(ANDImetadata[['Long.name.3']])])
