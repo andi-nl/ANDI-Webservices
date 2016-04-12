@@ -24,7 +24,7 @@ colnames( mypatdata) <- c("patid", "age", "dob", "dot", "SEX", "EDU", "uniqueid"
      "Dataset", "SPSS_name", "highborder", "highweb", "lowborder", "lowweb",
      "score")
 mypatdata[['patid']] <- as.numeric(as.character(mypatdata[['patid']]))
-mypatdata[['AGE']] <- as.period(interval(ymd(substring(mypatdata[['dob']],1,10)),ymd(substring(mypatdata[['dot']],1,10))))[['year']] - 65
+mypatdata[['AGE']] <- year(as.period(interval(ymd(substring(mypatdata[['dob']],1,10)),ymd(substring(mypatdata[['dot']],1,10))))) - 65
 mypatdata[['EDU']] <- as.numeric(as.character(mypatdata[['EDU']]))
 mypatdata[['conf']] <- as.numeric(json[['conf']])
 mypatdata[['sig']] <- json[['sig']]
@@ -56,7 +56,7 @@ inv.C <- solve(C)
 #
 rownames(beta) <- rep(ANDImetadata[['uniqueid']],4)
 betaselection <- beta[rownames(beta) %in% whichtests]
-mydata[['pred']] <- (t( c(1, mydata[['SEX[1]']], mydata[['AGE[1]']], mydata[['EDU[1]']])) %x% diag(1,P)) %*% betaselection
+mydata[['pred']] <- (t( c(1, mydata[['SEX']][1], mydata[['AGE']][1], mydata[['EDU']][1])) %x% diag(1,P)) %*% betaselection
 
 tstatistics <- NULL
 pvalues <- NULL
@@ -72,7 +72,7 @@ Tsquared <- ( 1 / g ) * ( ( min.est.n - P ) / ( ( min.est.n - 1 ) * P ) ) * t( m
 tstatistics <- ((mydata[['score']] - mydata[['pred']]) / ( sqrt(diag(C)) / sqrt(est.n))) * (1 / sqrt(est.n + 1))
 difference <- (mydata[['score']] - mydata[['pred']])
 
-tailed <- mydata[['sig[1]']]
+tailed <- mydata[['sig']][1]
 if( tailed == "oneTailedLeft"){
   pvalues <- pt(tstatistics, dfs, lower = FALSE)
   MNCpvalue <- pf( Tsquared, P, min.est.n - P, lower = FALSE)
@@ -110,18 +110,18 @@ if( tailed == "twoTailed"){
 
 
 if( tailed == "oneTailedLeft"){
-  inneredge <- qt( (1 - ( mydata[['conf[1]']]  / 100)), dfs, lower.tail = T)
+  inneredge <- qt( (1 - ( mydata[['conf']][1]  / 100)), dfs, lower.tail = T)
   outeredge <- rep(99999,P)
 }
 
 if( tailed == "oneTailedRight"){
   inneredge <- rep(-99999,P)
-  outeredge <- qt( (1 - ( mydata[['conf[1]']]  / 100)), dfs, lower.tail = F)
+  outeredge <- qt( (1 - ( mydata[['conf']][1]  / 100)), dfs, lower.tail = F)
 }
 
 if( tailed == "twoTailed"){
-  inneredge <- qt( (1 - ( mydata[['conf[1]']] / 100)) / 2, dfs)
-  outeredge <- abs( qt( (1 - ( mydata[['conf[1]']] / 100)) / 2, dfs))
+  inneredge <- qt( (1 - ( mydata[['conf']][1] / 100)) / 2, dfs)
+  outeredge <- abs( qt( (1 - ( mydata[['conf']][1] / 100)) / 2, dfs))
 }
 
 tstatistics <- round(tstatistics, 2)
