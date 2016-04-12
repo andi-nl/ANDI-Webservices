@@ -159,5 +159,3 @@ totaloutputdataframe <- rbind( totaloutputdataframe, myoutputdataframe)
     return(myoutputdata)
 }
 
-
-myFunc("Jtests.json")
