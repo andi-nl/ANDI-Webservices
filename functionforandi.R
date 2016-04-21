@@ -157,7 +157,7 @@ myFunc <- function( myJSON){
     totaloutputdataframe <- rbind( totaloutputdataframe, myoutputdataframe)
   }
   myoutputdata <- toJSON( totaloutputdataframe,pretty = T)
-  cat(myoutputdata)
+  #cat(myoutputdata)
   return(myoutputdata)
 
 }
