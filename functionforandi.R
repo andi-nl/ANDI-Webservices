@@ -49,7 +49,9 @@ myFunc <- function( myJSON){
     
     
     
-    C <- covariancemat[ rownames(covariancemat) %in% whichtests, colnames(covariancemat) %in% whichtests]
+    #C <- covariancemat[ rownames(covariancemat) %in% whichtests, colnames(covariancemat) %in% whichtests]
+    C <- covariancemat[ rownames(covariancemat) %in% whichtests, colnames(covariancemat) %in% whichtests,drop=FALSE]
+    
     P <- nrow(mydata)
     inv.C <- solve(C)
     
