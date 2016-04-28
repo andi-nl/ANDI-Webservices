@@ -23,7 +23,7 @@ myFunc <- function( myJSON){
   colnames( mypatdata) <- c("patid", "age", "dob", "dot", "SEX", "EDU", "uniqueid", "label", 
                             "Dataset", "SPSS_name", "highborder", "highweb", "lowborder", "lowweb",
                             "score")
-  mypatdata[['patid']] <- as.numeric(as.character(mypatdata[['patid']]))
+  mypatdata[['patid']] <- as.character(mypatdata[['patid']])
   # mypatdata[['AGE']] <- year(as.period(interval(ymd(substring(mypatdata[['dob']],1,10)),ymd(substring(mypatdata[['dot']],1,10))))) - 65
   mypatdata[['EDU']] <- as.numeric(as.character(mypatdata[['EDU']]))
   mypatdata[['conf']] <- as.numeric(json[['conf']])
