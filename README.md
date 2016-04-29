@@ -5,12 +5,11 @@ Webservice for the ANDI website
 ANDI web-services is currently build on flask framework of python. This RESTful api takes two requests GET and POST implemented in script `callRFromWebService.py`. Internally this webservice is calling R script `functionforandi.R`.
 The input to this REST call is a JSON object build using form input of the ANDI portal by filling in patient data. The output of this REST call is another JSON object that is used to display results as a line graph. The resulting JSON object consists of statistical calculations, computed from `functionforandi.R` script.
 
-To test this webservice a REST client for chrome browser such as  [Postman](https://chrome.google.com/webstore/detail/postman/fhbjgbiflinjbdggehcddcbncdddomop) can be used. 
-At present the webservice runs at (http://145.100.58.103:9000/#/).
+To test this webservice a REST client software can be used. 
 
-From within this client select `POST` from the dropdown list as a service. Enter the url (http://145.100.58.103:5000/formTestScores) in the field next to `POST`. Next, select the menu item `Body` and enter the following input example. After this click the `Send` button. 
+From within this client use the `POST` request and enter the following example. 
 
-### example input of this webservice
+### example POST of this webservice
 ```javascript
 {
   "0": {
@@ -128,7 +127,7 @@ From within this client select `POST` from the dropdown list as a service. Enter
 ```
 
 
-## If everything goes well the following example output of this webservice should be visible below in the `Postman` client.
+## If everything goes well the following example output of this webservice should be visible.
 
 ```javascript
 [
